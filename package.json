@@ -1,0 +1,30 @@
+{
+  "name": "update-loop",
+  "version": "1.0.0",
+  "description": "A unity style event loop that has callbacks for earlyUpdate, update, and lateUpdate. Select a target FPS or choose to update with monitor refresh rate.",
+  "main": "dist/update-loop.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrj2211/update-loop.git"
+  },
+  "keywords": [
+    "update",
+    "loop",
+    "eventloop",
+    "updateloop",
+    "unity",
+    "fps"
+  ],
+  "author": "Joe Jankowiak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrj2211/update-loop/issues"
+  },
+  "homepage": "https://github.com/jrj2211/update-loop#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.0",
+  }
+}

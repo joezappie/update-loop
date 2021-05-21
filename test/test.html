@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>UpdateLoop Test</title>
+    <script src='../dist/update-loop.js'></script>
+  </head>
+
+  <body>
+    <input type='number' name='targetFPS' value='60'>
+
+    <button name='interval'>INTERVAL</button>
+    <button name='raf'>RAF</button>
+
+    <div>
+      Delta Time:
+      <span class='deltaTime'></span>
+    </div>
+    <div>
+      FPS:
+      <span class='fps'></span>
+    </div>
+    <div>
+      Average Jitter:
+      <span class='averageJitter'></span>
+    </div>
+
+    <script>
+
+      const targetFPS = document.querySelector('input[name=targetFPS]');
+      const fps = document.querySelector('.fps');
+      const deltaTime = document.querySelector('.deltaTime');
+      const averageJitter = document.querySelector('.averageJitter');
+
+      const looper = new UpdateLoop(parseInt(targetFPS.value), UpdateLoop.INTERVAL);
+
+      document.querySelector('[name=interval]').addEventListener('click', () => {
+        looper.stop();
+        looper.mode = UpdateLoop.INTERVAL;
+        looper.targetFPS = parseInt(targetFPS.value);
+        looper.start();
+      });
+
+      document.querySelector('[name=raf]').addEventListener('click', () => {
+        looper.stop();
+        looper.mode = UpdateLoop.RAF;
+        looper.targetFPS = parseInt(targetFPS.value);
+        looper.start();
+      })
+
+      looper.register({
+        update: (dt) => {
+          deltaTime.innerText = dt + 'ms';
+          fps.innerText = 1 / dt * 1000;
+          averageJitter.innerText = looper.averageJitter;
+        }
+      })
+
+      window.looper = looper;
+
+    </script>
+  </body>
+</html>
